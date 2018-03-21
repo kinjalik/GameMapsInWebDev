@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Map</title>
+  <link rel="stylesheet" href='css/leaflet.css'>
+  <link rel="stylesheet" href="css/leaflet.draw.css">
+  <link rel="stylesheet" href="css/easy-button.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  #mapid {
+    width: 100vw;
+    height: 100vh;
+    background: #6e9ecc;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="mapid"></div>
+  <script src="js/leaflet.js"></script>
+  <script src='js/leaflet.draw.js'></script>
+  <script src="js/easy-button.js"></script>
+  <script>
+  let GTAV = {
+    maps: {
+      VSat: L.tileLayer('maps/VSat/{z}/{x}/{y}.png', {
+        attribution: 'San Andreas Satellite Map',
+        minZoom: 1,
+        maxZoom: 6,
+        continuousWorld: false,
+        noWrap: true,
+        errorTileUrl: 'maps/VSat/blank.png'
+      }),
+      VAtlas: L.tileLayer('maps/VAtlas/{z}/{x}/{y}.png', {
+        attribution: 'San Andreas Atlas Map',
+        minZoom: 1,
+        maxZoom: 6,
+        continuousWorld: false,
+        noWrap: true,
+        errorTileUrl: 'maps/VAtlas/blank.png'
+      }),
+      VRoad: L.tileLayer('maps/VRoad/{z}/{x}/{y}.png', {
+        attribution: 'San Andreas Road Map',
+        minZoom: 1,
+        maxZoom: 6,
+        continuousWorld: false,
+        noWrap: true,
+        errorTileUrl: 'maps/VRoad/blank.png'
+      })
+    },
+    crs: L.extend({}, L.CRS.Simple, {
+      transformation: new L.Transformation(0.02133333333, 127.99999998, -0.02133333333, 127.99999998),
+    }),
+  }
+
+
+  var mymap = L.map('mapid', {
+    crs: GTAV.crs,
+    maxBounds: [
+      [6500, 6500],
+      [-6500, -6500]
+    ],
+    layers: [GTAV.maps.VAtlas]
+  });
+  mymap.setView([0, 0], 2);
+
+  let layers = {
+    'Satellite': GTAV.maps.VSat,
+    'Road': GTAV.maps.VRoad,
+    'Atlas': GTAV.maps.VAtlas
+  }
+
+  L.control.layers(layers).addTo(mymap);
+
+  var marker = L.marker([0, 0]).addTo(mymap);
+
+  let editPanelShown = false;
+  function editMap() {
+    if (!editPanelShown) {
+      editPanelShown = true;
+      var drawnItems = new L.FeatureGroup();
+      mymap.addLayer(drawnItems);
+      var drawControl = new L.Control.Draw({
+        edit: {
+          featureGroup: drawnItems
+        }
+      });
+
+      mymap.addControl(new L.Control.Draw({
+        edit: {
+          featureGroup: drawnItems,
+          poly: {
+            allowIntersection: false
+          }
+        },
+        draw: {
+          polygon: {
+            allowIntersection: false,
+            showArea: true
+          }
+        }
+      }));
+
+      mymap.on(L.Draw.Event.CREATED, function(event) {
+        var layer = event.layer;
+
+        layer.addTo(mymap);
+
+        let test = JSON.stringify(layer.toGeoJSON());
+        console.log(test);
+      });
+    }
+  }
+
+  mymap.on('click', function(event) {
+    alert('lat: ' + event.latlng.lat + ';\nlng: ' + event.latlng.lng + ';');
+  })
+
+  L.easyButton('<i class="fas fa-edit"></i>', function() {
+    editMap();
+  }).addTo(mymap);
+  </script>
+</body>
+
+</html>
