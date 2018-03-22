@@ -1,0 +1,39 @@
+{
+  "name": "GameMaps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kinjalik/mapsInWeb/GameMaps",
+  "author": "Albert Akmukhametov",
+  "license": "CC-BY-NC-SA-4.0",
+  "scripts": {
+    "start": "NODE_ENV=development gulp dev",
+    "build": "NODE_ENV=production gulp build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.42",
+    "autoprefixer": "^8.1.0",
+    "browser-sync": "^2.23.6",
+    "cssnano": "^3.10.0",
+    "del": "^3.0.0",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0-beta.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-fontgen": "^0.2.5",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imacss": "^1.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-useref": "^3.1.5"
+  }
+}
