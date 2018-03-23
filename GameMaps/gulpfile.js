@@ -30,11 +30,11 @@ if (global.devBuild) {
 
 gulp.task('server', function() {
   browserSync.init({
-    server: 'build',
+    server: '../docs',
     reloadOnRestart: true,
     notify: true
   });
-  browserSync.watch('build/**/*.*').on('change', browserSync.reload);
+  browserSync.watch('../docs/**/*.*').on('change', browserSync.reload);
 })
 
 gulp.task('watch', function() {
