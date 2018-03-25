@@ -24,22 +24,22 @@ let SanAndreas = {
       switch(outputData) {
         case 'object':
           return {
-            lat: data.lng,
-            lng: data.lat
+            lat: data.lng.toFixed(4),
+            lng: data.lat.toFixed(4)
           }
         case 'array':
-          return [data.lng, data.lat];
+          return [data.lng.toFixed(4), data.lat.toFixed(4)];
       }
     } else if (data instanceof Array) {
       console.log('Got Array');
       switch(outputData) {
         case 'object':
           return {
-            lat: data[1],
-            lng: data[0]
+            lat: data[1].toFixed(4),
+            lng: data[0].toFixed(4)
           }
         case 'array':
-          return [data[1], data[0]];
+          return [data[1].toFixed(4), data[0].toFixed(4)];
       }
     } else {
       console.error('Wrong coordinates');
@@ -62,16 +62,16 @@ let layers = {
   'Road': SanAndreas.maps.SARoad
 }
 
-
-
-// let notifyPopup = L.popup()
-// mymap.on('click', function(e) {
-//   console.log(e.latlng);
-//   notifyPopup
-//     .setLatLng(e.latlng)
-//     .setContent('<p>Coordinates<br />Lat Lng: ' + places.coordsTranslator('array', e.latlng).toString() + '</p>')
-//     .openOn(mymap);
-// })
+function showCoordinates() {
+  let notifyPopup = L.popup()
+  mymap.on('click', function(e) {
+    console.log(e.latlng);
+    notifyPopup
+      .setLatLng(e.latlng)
+      .setContent('<p>Coordinates<br />Lat Lng: ' + SanAndreas.coordsTranslator('array', e.latlng).toString() + '</p>')
+      .openOn(mymap);
+  })
+}
 
 let editPanelShown = false;
 
