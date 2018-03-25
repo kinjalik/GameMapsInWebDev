@@ -3,7 +3,9 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos Police Department Headquarters"
+    "name": "Los Santos Police Department Headquarters",
+    "description": "Центральное управление Полицейского Департамента",
+    "icon": "police"
   },
   "geometry":
   {
@@ -15,7 +17,9 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos City Hall"
+    "name": "Los Santos City Hall",
+    "description": "Мэрия города Los Santos",
+    "icon": "flag"
   },
   "geometry":
   {
@@ -27,7 +31,9 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Alhambra Club"
+    "name": "Alhambra Club",
+    "description": "Нет описания",
+    "icon": "bar"
   },
   "geometry":
   {
@@ -39,7 +45,9 @@
   "type": "Feature",
   "properties":
   {
-    "name": "LS Police Habror Division"
+    "name": "LS Police Habror Division",
+    "description": "Подразделение Полицейского управления города Los Santos по портовой зоне",
+    "icon": "police"
   },
   "geometry":
   {
@@ -51,7 +59,9 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos Heliport"
+    "name": "Los Santos Heliport",
+    "description": "Нет описания",
+    "icon": "disk"
   },
   "geometry":
   {
@@ -63,7 +73,9 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos International Airport"
+    "name": "Los Santos International Airport",
+    "description": "Международный Аэропорт города Los Santos обеспечивает воздушную связь города",
+    "icon": "airport"
   },
   "geometry":
   {
@@ -75,7 +87,9 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos Forum"
+    "name": "Los Santos Forum",
+    "description": "Стадион в восточной части города",
+    "icon": "cup"
   },
   "geometry":
   {
@@ -87,7 +101,9 @@
   "type": "Feature",
   "properties":
   {
-    "name": "All Saints General Hospital"
+    "name": "All Saints General Hospital",
+    "description": "Центральный госпиталь города",
+    "icon": "hospital"
   },
   "geometry":
   {
@@ -99,7 +115,9 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Jefferson Hospital"
+    "name": "Jefferson Hospital",
+    "description": "Восточный госпиталь",
+    "icon": "hospital"
   },
   "geometry":
   { 
@@ -111,11 +129,139 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos County Sheriff's Department"
+    "name": "Los Santos County Sheriff's Department",
+    "description": "Центральный офис управления Департамента Шерифа по округу города Los Santos",
+    "icon": "police"
   },
   "geometry":
   {
     "type": "Point",
     "coordinates": [616.699219, -574.218751]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "San Fierro International Airport",
+    "description": "Нет описания",
+    "icon": "airport"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [-1412.1094,-301.0254]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "San Fierro Police Department",
+    "description": "Нет описания",
+    "icon": "police"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [-1594.4824,711.9141]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "San Fierro City Hall",
+    "description": "Нет описания",
+    "icon": "flag"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [-2770.7520,375.0000]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "San Fierro Forum",
+    "description": "Нет описания",
+    "icon": "cup"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [-2053.7109,-446.7773]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Las Venturas Airport",
+    "description": "Нет описания",
+    "icon": "airport"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1691.8945,1442.8711]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Las Venturas Forum",
+    "description": "Нет описания",
+    "icon": "cup"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1098.6328,1529.2969]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Las Venturas Police Department",
+    "description": "Нет описания",
+    "icon": "police"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [2330.5664,2471.9238]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Cluckin Bell",
+    "description": "Нет описания",
+    "icon": "chicken"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [937.5000,-1362.3047]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Los Santos Central Bank",
+    "description": "Нет описания",
+    "icon": "bank"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [ 1462.6465,-1010.7422 ]
   }
 }]
