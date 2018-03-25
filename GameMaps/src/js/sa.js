@@ -277,4 +277,7 @@ L.control.layers(layers, overlays, {
 
 // Temp for marking of map
 debug.status = true;
-debug.options = { showCoordinates: true };
+debug.options = {
+  showCoordinates: true,
+  logging: false
+};
