@@ -2,34 +2,38 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const $ = require('gulp-load-plugins')();
 
+const sourceDirs = {
+  base: 'src',
+  html: 'src',
+  styles: 'src/scss',
+  js: 'src/js',
+  fonts: 'src/fonts',
+  img: 'src/img',
+  assetsFiles: [
+    `src/**/*.*`,
+    `!src/scss/**/*.{scss,css}`,
+    `!src/scss//*.*`,
+    `!src/**/*.html`,
+    `!src/js/**/*.js`,
+    `!src/img/**/*.*`
+  ]
+}
+
+const buildDirs = {
+  base: '../docs',
+  html: '../docs',
+  styles: '../docs/css',
+  js: '../docs/js',
+  fonts: '../docs/fonts',
+  img: '../docs/img'
+}
+
 module.exports = () => {
   return {
     devBuild: process.env.NODE_ENV !== 'production',
     paths: {
-      src: {
-        base: 'src',
-        html: 'src',
-        styles: 'src/scss',
-        js: 'src/js',
-        fonts: 'src/fonts',
-        img: 'src/img',
-        assetsFiles: [
-          `src/**/*.*`,
-          `!src/scss/**/*.{scss,css}`,
-          `!src/scss//*.*`,
-          `!src/**/*.html`,
-          `!src/js/**/*.js`,
-          `!src/img/**/*.*`
-        ]
-      },
-      build: {
-        base: '../docs',
-        html: '../docs',
-        styles: '../docs/css',
-        js: '../docs/js',
-        fonts: '../docs/fonts',
-        img: '../docs/img'
-      }
+      src: sourceDirs,
+      build: buildDirs
     },
     postcssProcessorsProd: [
       autoprefixer(),
