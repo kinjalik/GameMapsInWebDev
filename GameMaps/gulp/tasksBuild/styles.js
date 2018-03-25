@@ -8,13 +8,7 @@ module.exports = () => {
   return gulp.src(`${global.paths.src.styles}/*.{scss,css}`)
     .pipe($.plumber({
       errorHandler: $.notify.onError(function(err) {
-        return {
-          'title': 'SCSS Compile Fail',
-          'subtitle': 'Check the Console Window',
-          'message': err.message,
-          "sound": 'Pulse',
-          'onLast': true,
-        }
+		return Object.assign(global.errorHandler, { 'message': err.message }, { 'title': 'SCSS Build Fail' })
       })
     }))
     .pipe($.newer(global.paths.build.styles))

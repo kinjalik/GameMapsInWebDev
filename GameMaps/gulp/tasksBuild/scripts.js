@@ -6,13 +6,7 @@ module.exports = () => {
   return gulp.src(`${global.paths.src.js}/**/*.js`)
     .pipe($.plumber({
       errorHandler: $.notify.onError(function(err) {
-        return {
-          'title': 'JS Build Fail',
-          'subtitle': 'Check the Console Window',
-          'message': err.message,
-          "sound": 'Pulse',
-          'onLast': true,
-        }
+        return Object.assign(global.errorHandler, { 'message': err.message }, { 'title': 'JS Build Fail' })
       })
     }))
     .pipe($.newer(global.paths.build.js))

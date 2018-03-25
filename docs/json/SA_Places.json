@@ -6,7 +6,7 @@
     "name": "Los Santos Police Department Headquarters",
     "description": "Центральное управление Полицейского Департамента",
     "icon": "police"
-  },
+  }, 
   "geometry":
   {
     "type": "Point",

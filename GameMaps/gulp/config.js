@@ -12,7 +12,15 @@ module.exports = () => {
         styles: 'src/scss',
         js: 'src/js',
         fonts: 'src/fonts',
-        img: 'src/img'
+        img: 'src/img',
+        assetsFiles: [
+          `src/**/*.*`,
+          `!src/scss/**/*.{scss,css}`,
+          `!src/scss//*.*`,
+          `!src/**/*.html`,
+          `!src/js/**/*.js`,
+          `!src/img/**/*.*`
+        ]
       },
       build: {
         base: '../docs',
@@ -35,6 +43,11 @@ module.exports = () => {
     ],
     babelSettings: {
       presets: ['env']
+    },
+    errorHandler: {
+      'subtitle': 'Check the Console Window',
+      "sound": 'Pulse',
+      'onLast': true,
     }
   }
 }

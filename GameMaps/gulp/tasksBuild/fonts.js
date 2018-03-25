@@ -6,13 +6,7 @@ module.exports = () => {
   gulp.src(`${global.paths.src.fonts}/*.{ttf,otf}`, { since: gulp.lastRun('fonts') })
     .pipe($.plumber({
       errorHandler: $.notify.onError(function(err) {
-        return {
-          'title': 'Font Build Fail',
-          'subtitle': 'Check the Console Window',
-          'message': err.message,
-          "sound": 'Pulse',
-          'onLast': true,
-        }
+        return Object.assign(global.errorHandler, { 'message': err.message }, { 'title': 'Font Build Fail' })
       })
     }))
     .pipe($.fontgen({
