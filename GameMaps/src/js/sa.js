@@ -97,7 +97,7 @@ let SanAndreas = {
           return {
             lat: data.lng.toFixed(4),
             lng: data.lat.toFixed(4)
-          }
+          } 
         case 'array':
           return [data.lng.toFixed(4), data.lat.toFixed(4)];
       }
