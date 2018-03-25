@@ -273,3 +273,8 @@ let overlays = {
 L.control.layers(layers, overlays, {
   collapsed: false
 }).addTo(mymap);
+
+
+// Temp for marking of map
+debug.status = true;
+debug.options = { showCoordinates: true };
