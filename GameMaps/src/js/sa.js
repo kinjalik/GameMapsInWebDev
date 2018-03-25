@@ -39,7 +39,8 @@ class Debug {
           <p>
             <b>Coordinates</b><br>
             <b>Lat:</b> ${SanAndreas.coordsTranslator('array', e.latlng)[0]}<br>
-            <b>Lng:</b> ${SanAndreas.coordsTranslator('array', e.latlng)[1]}
+            <b>Lng:</b> ${SanAndreas.coordsTranslator('array', e.latlng)[1]}<br>
+            <i>${SanAndreas.coordsTranslator('array', e.latlng).toString()}</i>
           </p>
           `)
         .openOn(mymap);
@@ -247,11 +248,22 @@ class Places {
   }
 
   drawLayer(GeoJSON, isAddedToMap) {
-    let layer = L.geoJSON(GeoJSON);
+    let layer = L.geoJSON(GeoJSON, {
+      onEachFeature: (feature, layer) => {
+        layer
+          .bindPopup(`
+            <b>${feature.properties.name}</b><br>
+            <p>${feature.properties.description}</p>
+          `)
+          .setIcon(L.icon({
+            iconUrl: `img/icons/${feature.properties.icon}.png`,
+            iconSize: [16,16]
+          }))
+      }
+    });
     if (isAddedToMap) layer.addTo(mymap);
     return layer;
   }
-
 }
 
 let places = new Places('json/SA_places.json', true);
