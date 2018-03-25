@@ -67,8 +67,6 @@ class Debug {
   }
 }
 
-let debug = new Debug(false);
-
 let SanAndreas = {
   maps: {
     SASat: L.tileLayer('maps/SASat/{z}/{x}/{y}.png', {
@@ -112,127 +110,129 @@ let mymap = L.map('mapid', {
 });
 mymap.setView([0, 0], 2);
 
-debug.options = {
-  showCoordinates: false
+
+let debug = new Debug(true, {
+  showCoordinates: true,
+  logging: false
+});
+
+class Draw {
+  constructor(map) {
+    this.editPanelShown = false;
+    this.control(map)
+  }
+
+  editMap(map) {
+    if (!this.editPanelShown) {
+      this.editPanelShown = true;
+      this.drawnItems = new L.FeatureGroup();
+      map.addLayer(this.drawnItems);
+
+      map.addControl(new L.Control.Draw({
+        draw: {
+          polygon: {
+            allowIntersection: false,
+            showArea: true
+          }
+        }
+      }));
+
+      map.on(L.Draw.Event.CREATED, function(event) {
+        let layer = event.layer.addTo(map);
+        console.info(JSON.stringify(layer.toGeoJSON()));
+      });
+    }
+  }
+
+  control(map) {
+    L.easyButton('<i class="fas fa-edit"></i>', () => {
+      this.editMap(map);
+    }).addTo(map);
+  }
+
 }
+
+let draw = new Draw(mymap);
+
+class Areas {
+  constructor(jsonFile, isAddedToMap) {
+    this.layer =  new GetGeoJSON('json/SA_Police_Jursidictions.json', isAddedToMap, this.tooltipHandler, this.styleHandler);
+    debug.log('info', 'Areas GeoJSON:', this.layer);
+  }
+  
+  styleHandler(color) {
+    switch (color) {
+      case "blue":
+        return { color: "#00a8ff" };
+      case "green":
+        return { color: "#4cd137" };
+      case "red":
+        return { color: "#e84118" };
+    }
+  }
+
+  tooltipHandler(feature, layer) {
+    layer.bindTooltip(feature.properties.name);
+  }
+
+}
+
+class Places {
+  constructor(jsonFile, isAddedToMap) {
+    this.layer =  new GetGeoJSON('json/SA_Places.json', isAddedToMap, this.popupHandler);
+    debug.log('info', 'Areas GeoJSON:', this.layer);
+  }
+
+  popupHandler(feature, layer) {
+    layer.bindPopup(feature.properties.name);
+    layer
+      .bindPopup(`
+        <b>${feature.properties.name}</b><br>
+        <p>${feature.properties.description}</p>
+      `)
+      .setIcon(L.icon({
+        iconUrl: `img/icons/${feature.properties.icon}.png`,
+        iconSize: [16,16]
+    }))
+  }
+}
+
+class GetGeoJSON {
+  constructor(jsonFile, isAddedToMap, onEachFeatureHandler, styleHandler) {
+    let json = this.getJson(jsonFile);
+    return this.drawLayer(json, isAddedToMap, onEachFeatureHandler, styleHandler);
+  }
+
+  getJson(address) {
+    let xhr = new XMLHttpRequest(),
+      places;
+    xhr.open('GET', address, false);
+    xhr.send();
+    if (xhr.status != 200) {
+      debug.log('error', 'GeoJSON request failed.\n', `${xhr.status}: ${xhr.statusText}`);
+    } else {
+      return JSON.parse(xhr.responseText);
+    }
+  }
+
+  drawLayer(GeoJSON, isAddedToMap, onEachFeatureHandler, styleHandler) {
+    let layer = L.geoJSON(GeoJSON, {
+      style: styleHandler != undefined ? (feature) => styleHandler(feature.properties.color) : {},
+      onEachFeature: onEachFeatureHandler != undefined  ? (feature, layer) => onEachFeatureHandler(feature, layer) : undefined
+    });
+    if (isAddedToMap) layer.addTo(mymap);
+    return layer;
+  }
+}
+
+let areas = new Areas('json/SA_Police_Jursidictions.json', true);
+
+let places = new Places('json/SA_Places.json', true);
 
 let layers = {
   'Satellite': SanAndreas.maps.SASat,
   'Road': SanAndreas.maps.SARoad
 }
-
-let editPanelShown = false;
-
-function editMap() {
-  if (!editPanelShown) {
-    editPanelShown = true;
-    var drawnItems = new L.FeatureGroup();
-    mymap.addLayer(drawnItems);
-
-    mymap.addControl(new L.Control.Draw({
-      draw: {
-        polygon: {
-          allowIntersection: false,
-          showArea: true
-        }
-      }
-    }));
-
-    mymap.on(L.Draw.Event.CREATED, function(event) {
-      let layer = event.layer.addTo(mymap);
-      debug.log('info', 'GeoJSON:', JSON.stringify(layer.toGeoJSON()));
-    });
-  }
-}
-
-L.easyButton('<i class="fas fa-edit"></i>', function() {
-  editMap();
-}).addTo(mymap);
-
-class Areas {
-  constructor(jsonFile, isAddedToMap) {
-    this.areasGeoJSON = this.getJson(jsonFile);
-    debug.log('info', 'Areas GeoJSON:', this.areasGeoJSON);
-    this.layer = this.drawLayer(this.areasGeoJSON, isAddedToMap)
-    debug.log('info', 'Areas Layer:', this.layer);
-  }
-
-  getJson(address) {
-    let xhr = new XMLHttpRequest(),
-      places;
-    xhr.open('GET', address, false);
-    xhr.send();
-    if (xhr.status != 200) {
-      debug.log('error', 'Areas GeoJSON request failed.\n', `${xhr.status}: ${xhr.statusText}`);
-    } else {
-      return JSON.parse(xhr.responseText);
-    }
-  }
-
-  drawLayer(GeoJSON, isAddedToMap) {
-    let layer = L.geoJSON(GeoJSON, {
-      style: (feature) => {
-        switch (feature.properties.color) {
-          case "blue":
-            return { color: "#00a8ff" };
-          case "green":
-            return { color: "#4cd137" };
-          case "red":
-            return { color: "#e84118" };
-        }
-      },
-      onEachFeature: (feature, layer) => {
-        layer.bindTooltip(feature.properties.name);
-      }
-    });
-    if (isAddedToMap) layer.addTo(mymap);
-    return layer;
-  }
-
-}
-
-let areas = new Areas('json/SA_Police_Jursidictions.json');
-
-class Places {
-  constructor(jsonFile, isAddedToMap) {
-    this.GeoJSON = this.getJson(jsonFile);
-    debug.log('info', 'Places GeoJSON:', this.GeoJSON);
-    this.layer = this.drawLayer(this.GeoJSON, isAddedToMap);
-    debug.log('info', 'Places layer:', this.layer);
-  }
-
-  getJson(address) {
-    let xhr = new XMLHttpRequest(),
-      places;
-    xhr.open('GET', address, false);
-    xhr.send();
-    if (xhr.status != 200) {
-      debug.log('error', 'Areas GeoJSON request failed.\n', `${xhr.status}: ${xhr.statusText}`);
-    } else {
-      return JSON.parse(xhr.responseText);
-    }
-  }
-
-  drawLayer(GeoJSON, isAddedToMap) {
-    let layer = L.geoJSON(GeoJSON, {
-      onEachFeature: (feature, layer) => {
-        layer
-          .bindPopup(`
-            <b>${feature.properties.name}</b><br>
-            <p>${feature.properties.description}</p>
-          `)
-          .setIcon(L.icon({
-            iconUrl: `img/icons/${feature.properties.icon}.png`,
-            iconSize: [16,16]
-          }))
-      }
-    });
-    if (isAddedToMap) layer.addTo(mymap);
-    return layer;
-  }
-}
-
-let places = new Places('json/SA_Places.json', true);
 
 let overlays = {
   'Police Jurisdictions': areas.layer,
@@ -243,10 +243,3 @@ L.control.layers(layers, overlays, {
   collapsed: false
 }).addTo(mymap);
 
-
-// Temp for marking of map
-debug.status = true;
-debug.options = {
-  showCoordinates: true,
-  logging: true
-};
