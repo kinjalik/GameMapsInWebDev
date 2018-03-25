@@ -263,7 +263,7 @@ class Places {
   }
 }
 
-let places = new Places('json/SA_places.json', true);
+let places = new Places('json/SA_Places.json', true);
 
 let overlays = {
   'Police Jurisdictions': areas.layer,
@@ -279,5 +279,5 @@ L.control.layers(layers, overlays, {
 debug.status = true;
 debug.options = {
   showCoordinates: true,
-  logging: false
+  logging: true
 };
