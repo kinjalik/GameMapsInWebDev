@@ -32,6 +32,9 @@ module.exports = () => {
           },
         }]
       })
-    ]
+    ],
+    babelSettings: {
+      presets: ['env']
+    }
   }
 }

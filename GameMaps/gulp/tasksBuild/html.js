@@ -16,7 +16,7 @@ module.exports = () => {
       })
     }))
     .pipe($.newer(global.paths.build.html))
-    .pipe($.if(global.devBuild, $.useref()))
-    .pipe($.if(global.devBuild, $.htmlmin({ collapseWhitespace: true })))
+    .pipe($.if(!global.devBuild, $.useref()))
+    .pipe($.if(!global.devBuild, $.htmlmin({ collapseWhitespace: true })))
     .pipe(gulp.dest(global.paths.build.html))
 }

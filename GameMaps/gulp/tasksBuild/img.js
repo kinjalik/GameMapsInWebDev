@@ -15,6 +15,6 @@ module.exports = () => {
         }
       })
     }))
-    .pipe($.if(global.devBuild, $.imagemin(global.imageminSettings)))
+    .pipe($.if(!global.devBuild, $.imagemin(global.imageminSettings)))
     .pipe(gulp.dest(global.paths.build.img))
 }
