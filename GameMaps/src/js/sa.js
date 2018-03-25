@@ -117,10 +117,10 @@ L.easyButton('<i class="fas fa-edit"></i>', function() {
 }).addTo(mymap);
 
 class Areas {
-  constructor(jsonFile) {
+  constructor(jsonFile, isAddedToMap) {
     this.areasGeoJSON = this.getJson(jsonFile);
     console.log('GeoJSON:', this.areasGeoJSON);
-    this.layer = this.drawAreas(this.areasGeoJSON)
+    this.layer = this.drawLayer(this.areasGeoJSON, isAddedToMap)
     console.log('Layer:', this.layer);
   }
 
@@ -136,7 +136,7 @@ class Areas {
     }
   }
 
-  drawAreas(GeoJSON) {
+  drawLayer(GeoJSON, isAddedToMap) {
     let toolTipText;
     let layer = L.geoJSON(GeoJSON, {
       style: (feature) => {
@@ -150,7 +150,8 @@ class Areas {
         layer.bindTooltip(feature.properties.name);
         console.log(layer);
       }
-    }).addTo(mymap);
+    });
+    if (isAddedToMap) layer.addTo(mymap);
     console.log(toolTipText);
     return layer;
   }
@@ -160,10 +161,10 @@ class Areas {
 let areas = new Areas('json/SA_Police_Jursidictions.json');
 
 class Places {
-  constructor(jsonFile) {
+  constructor(jsonFile, isAddedToMap) {
     this.GeoJSON = this.getJson(jsonFile);
-    console.log('GeoJSON:', this.areasGeoJSON);
-    this.layer = this.drawAreas(this.areasGeoJSON)
+    console.log('GeoJSON:', this.GeoJSON);
+    this.layer = this.drawLayer(this.GeoJSON, isAddedToMap);
     console.log('Layer:', this.layer);
   }
 
@@ -179,15 +180,21 @@ class Places {
     }
   }
 
-  drawLocations(GeoJSON) {
-    let layer = L.geoJSON(GeoJSON).addTo(mymap);
+  drawLayer(GeoJSON, isAddedToMap) {
+    let layer = L.geoJSON(GeoJSON);
+    if (isAddedToMap) layer.addTo(mymap);
     return layer;
   }
 
 }
 
+let places = new Places('json/SA_places.json', true);
+
 let overlays = {
-  'Police Jurisdictions': areas.layer
+  'Police Jurisdictions': areas.layer,
+  'Locations': places.layer
 }
 
-L.control.layers(layers, overlays).addTo(mymap);
+L.control.layers(layers, overlays, {
+  collapsed: false
+}).addTo(mymap);
