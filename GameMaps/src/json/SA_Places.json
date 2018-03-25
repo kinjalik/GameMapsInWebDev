@@ -3,7 +3,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos Police Department Headquarters"
+    "name": "Los Santos Police Department Headquarters",
+    "icon": "police"
   },
   "geometry":
   {
@@ -15,7 +16,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos City Hall"
+    "name": "Los Santos City Hall",
+    "name": "flag"
   },
   "geometry":
   {
@@ -27,7 +29,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Alhambra Club"
+    "name": "Alhambra Club",
+    "icon": "bar"
   },
   "geometry":
   {
@@ -39,7 +42,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "LS Police Habror Division"
+    "name": "LS Police Habror Division",
+    "icon": "police"
   },
   "geometry":
   {
@@ -51,7 +55,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos Heliport"
+    "name": "Los Santos Heliport",
+    "icon": "disk"
   },
   "geometry":
   {
@@ -63,7 +68,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos International Airport"
+    "name": "Los Santos International Airport",
+    "icon": "airport"
   },
   "geometry":
   {
@@ -75,7 +81,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos Forum"
+    "name": "Los Santos Forum",
+    "icon": "cup"
   },
   "geometry":
   {
@@ -87,7 +94,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "All Saints General Hospital"
+    "name": "All Saints General Hospital",
+    "icon": "hospital"
   },
   "geometry":
   {
@@ -99,7 +107,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Jefferson Hospital"
+    "name": "Jefferson Hospital",
+    "icon": "hospital"
   },
   "geometry":
   { 
@@ -111,7 +120,8 @@
   "type": "Feature",
   "properties":
   {
-    "name": "Los Santos County Sheriff's Department"
+    "name": "Los Santos County Sheriff's Department",
+    "icon": "police"
   },
   "geometry":
   {

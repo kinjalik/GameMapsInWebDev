@@ -22,7 +22,11 @@ class Debug {
   }
 
   set options(obj) {
-    if (obj.showCoordinates !== undefined) { this.settings.showCoordinates = Boolean(obj.showCoordinates) }
+    if (obj.showCoordinates !== undefined) {
+      this.settings.showCoordinates = Boolean(obj.showCoordinates) ;
+      this.showCoordinates();
+    }
+    if (obj.logging !== undefined) { this.settings.logging = Boolean(obj.logging) }
   }
 
   showCoordinates() {
@@ -31,12 +35,41 @@ class Debug {
       if (this.settings.showCoordinates === true && this.status == true) {
         notifyPopup
         .setLatLng(e.latlng)
-        .setContent('<p>Coordinates<br />Lat Lng: ' + SanAndreas.coordsTranslator('array', e.latlng).toString() + '</p>')
+        .setContent(`
+          <p>
+            <b>Coordinates</b><br>
+            <b>Lat:</b> ${SanAndreas.coordsTranslator('array', e.latlng)[0]}<br>
+            <b>Lng:</b> ${SanAndreas.coordsTranslator('array', e.latlng)[1]}
+          </p>
+          `)
         .openOn(mymap);
       }
     });
   }
+
+  log(status, preMessage, messageBody) {
+    if (this.settings.logging == false) return false;
+    switch(status) {
+      case 'error':
+        console.error(preMessage, messageBody);
+        break;
+      case 'warn':
+        console.warn(preMessage, messageBody);
+        break;
+      case 'info':
+        console.info(preMessage, messageBody);
+        break;
+      case 'log':
+        console.info(preMessage, messageBody);
+        break;
+    }
+  }
 }
+
+let debug = new Debug(true, {
+  showCoordinates: false,
+  logging: true
+});
 
 let SanAndreas = {
   maps: {
@@ -60,7 +93,7 @@ let SanAndreas = {
   }),
   coordsTranslator: (outputData, data) => {
     if (data instanceof Object && !(data instanceof Array)) {
-      console.log('Got Object');
+      debug.log('log', 'Coords converter got:', 'Object');
       switch (outputData) {
         case 'object':
           return {
@@ -71,7 +104,7 @@ let SanAndreas = {
           return [data.lng.toFixed(4), data.lat.toFixed(4)];
       }
     } else if (data instanceof Array) {
-      console.log('Got Array');
+      debug.log('log', 'Coords converter got:', 'Array');
       switch (outputData) {
         case 'object':
           return {
@@ -82,7 +115,7 @@ let SanAndreas = {
           return [data[1].toFixed(4), data[0].toFixed(4)];
       }
     } else {
-      console.error('Wrong coordinates');
+      debug.log('error', 'Coordinates are not correct', '');
     }
   },
 }
@@ -96,6 +129,10 @@ let mymap = L.map('mapid', {
   layers: [SanAndreas.maps.SASat]
 });
 mymap.setView([0, 0], 2);
+
+debug.options = {
+  showCoordinates: true
+}
 
 let layers = {
   'Satellite': SanAndreas.maps.SASat,
@@ -136,7 +173,7 @@ function editMap() {
       layer.addTo(mymap);
 
       let test = JSON.stringify(layer.toGeoJSON());
-      console.log(test);
+      debug.log('info', 'GeoJSON:', test);
     });
   }
 }
@@ -148,9 +185,9 @@ L.easyButton('<i class="fas fa-edit"></i>', function() {
 class Areas {
   constructor(jsonFile, isAddedToMap) {
     this.areasGeoJSON = this.getJson(jsonFile);
-    console.log('GeoJSON:', this.areasGeoJSON);
+    debug.log('info', 'Areas GeoJSON:', this.areasGeoJSON);
     this.layer = this.drawLayer(this.areasGeoJSON, isAddedToMap)
-    console.log('Layer:', this.layer);
+    debug.log('info', 'Areas Layer:', this.layer);
   }
 
   getJson(address) {
@@ -159,14 +196,13 @@ class Areas {
     xhr.open('GET', address, false);
     xhr.send();
     if (xhr.status != 200) {
-      alert(xhr.status + ': ' + xhr.statusText);
+      debug.log('error', 'Areas GeoJSON request failed.\n', `${xhr.status}: ${xhr.statusText}`);
     } else {
       return JSON.parse(xhr.responseText);
     }
   }
 
   drawLayer(GeoJSON, isAddedToMap) {
-    let toolTipText;
     let layer = L.geoJSON(GeoJSON, {
       style: (feature) => {
         switch (feature.properties.color) {
@@ -180,11 +216,9 @@ class Areas {
       },
       onEachFeature: (feature, layer) => {
         layer.bindTooltip(feature.properties.name);
-        console.log(layer);
       }
     });
     if (isAddedToMap) layer.addTo(mymap);
-    console.log(toolTipText);
     return layer;
   }
 
@@ -195,9 +229,9 @@ let areas = new Areas('json/SA_Police_Jursidictions.json');
 class Places {
   constructor(jsonFile, isAddedToMap) {
     this.GeoJSON = this.getJson(jsonFile);
-    console.log('GeoJSON:', this.GeoJSON);
+    debug.log('info', 'Places GeoJSON:', this.GeoJSON);
     this.layer = this.drawLayer(this.GeoJSON, isAddedToMap);
-    console.log('Layer:', this.layer);
+    debug.log('info', 'Places layer:', this.layer);
   }
 
   getJson(address) {
@@ -206,7 +240,7 @@ class Places {
     xhr.open('GET', address, false);
     xhr.send();
     if (xhr.status != 200) {
-      alert(xhr.status + ': ' + xhr.statusText);
+      debug.log('error', 'Areas GeoJSON request failed.\n', `${xhr.status}: ${xhr.statusText}`);
     } else {
       return JSON.parse(xhr.responseText);
     }
