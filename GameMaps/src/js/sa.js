@@ -92,26 +92,10 @@ let SanAndreas = {
   coordsTranslator: (outputData, data) => {
     if (data instanceof Object && !(data instanceof Array)) {
       debug.log('log', 'Coords converter got:', 'Object');
-      switch (outputData) {
-        case 'object':
-          return {
-            lat: data.lng.toFixed(4),
-            lng: data.lat.toFixed(4)
-          } 
-        case 'array':
-          return [data.lng.toFixed(4), data.lat.toFixed(4)];
-      }
+      return [data.lng.toFixed(4), data.lat.toFixed(4)];
     } else if (data instanceof Array) {
       debug.log('log', 'Coords converter got:', 'Array');
-      switch (outputData) {
-        case 'object':
-          return {
-            lat: data[1].toFixed(4),
-            lng: data[0].toFixed(4)
-          }
-        case 'array':
-          return [data[1].toFixed(4), data[0].toFixed(4)];
-      }
+      return [data[1].toFixed(4), data[0].toFixed(4)];
     } else {
       debug.log('error', 'Coordinates are not correct', '');
     }
