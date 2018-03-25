@@ -34,7 +34,7 @@ gulp.task('server', function() {
     reloadOnRestart: true,
     notify: true
   });
-  browserSync.watch('../docs/**/*.*').on('change', browserSync.reload);
+  browserSync.watch(['../docs/**/*.*', '!../docs/maps/**/*.*']).on('change', browserSync.reload);
 })
 
 gulp.task('watch', function() {
@@ -49,7 +49,8 @@ gulp.task('watch', function() {
       `!${global.paths.src.fonts}/*.*`,
       `!${global.paths.src.html}/**/*.html`,
       `!${global.paths.src.js}/**/*.js`,
-      `!${global.paths.src.img}/**/*.*`
+      `!${global.paths.src.img}/**/*.*`,
+      `!${global.paths.src.base}/maps/**/*.png`
     ], gulp.series('assets'));
 });
 

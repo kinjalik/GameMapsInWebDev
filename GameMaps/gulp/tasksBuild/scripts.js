@@ -15,8 +15,8 @@ module.exports = () => {
         }
       })
     }))
-    .pipe($.newer(global.paths.build.js))
-    .pipe($.if(global.devBuild, $.babel(global.babelSettings)))
-    .pipe($.if(global.devBuild, $.uglify()))
+    //.pipe($.newer(global.paths.build.js))
+    //.pipe($.if(global.devBuild, $.babel(global.babelSettings)))
+    //∂.pipe($.if(global.devBuild, $.uglify()))
     .pipe(gulp.dest(global.paths.build.js))
 }

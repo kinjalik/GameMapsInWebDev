@@ -18,6 +18,33 @@ let SanAndreas = {
   crs: L.extend({}, L.CRS.Simple, {
     transformation: new L.Transformation(0.04266666666, 127.99999998, -0.04266666666, 127.99999998),
   }),
+  coordsTranslator: (outputData, data) => {
+    if (data instanceof Object && !(data instanceof Array)) {
+      console.log('Got Object');
+      switch(outputData) {
+        case 'object':
+          return {
+            lat: data.lng,
+            lng: data.lat
+          }
+        case 'array':
+          return [data.lng, data.lat];
+      }
+    } else if (data instanceof Array) {
+      console.log('Got Array');
+      switch(outputData) {
+        case 'object':
+          return {
+            lat: data[1],
+            lng: data[0]
+          }
+        case 'array':
+          return [data[1], data[0]];
+      }
+    } else {
+      console.error('Wrong coordinates');
+    }
+  },
 }
 
 let mymap = L.map('mapid', {
@@ -35,15 +62,16 @@ let layers = {
   'Road': SanAndreas.maps.SARoad
 }
 
-L.control.layers(layers).addTo(mymap);
 
-let notifyPopup = L.popup()
-mymap.on('click', function(e) {
-  notifyPopup
-    .setLatLng(e.latlng)
-    .setContent('<p>Coordinates<br />Lat Lng: ' + e.latlng.toString() + '</p>')
-    .openOn(mymap);
-})
+
+// let notifyPopup = L.popup()
+// mymap.on('click', function(e) {
+//   console.log(e.latlng);
+//   notifyPopup
+//     .setLatLng(e.latlng)
+//     .setContent('<p>Coordinates<br />Lat Lng: ' + places.coordsTranslator('array', e.latlng).toString() + '</p>')
+//     .openOn(mymap);
+// })
 
 let editPanelShown = false;
 
@@ -88,14 +116,15 @@ L.easyButton('<i class="fas fa-edit"></i>', function() {
   editMap();
 }).addTo(mymap);
 
-class Places {
-  constructor(placesFile) {
-    this.placesList = this.getPlaces(placesFile);
-    this.markers = [];
-    this.makeMarkers();
+class Areas {
+  constructor(jsonFile) {
+    this.areasGeoJSON = this.getJson(jsonFile);
+    console.log('GeoJSON:', this.areasGeoJSON);
+    this.layer = this.drawAreas(this.areasGeoJSON)
+    console.log('Layer:', this.layer);
   }
 
-  getPlaces(address) {
+  getJson(address) {
     let xhr = new XMLHttpRequest(),
       places;
     xhr.open('GET', address, false);
@@ -107,23 +136,58 @@ class Places {
     }
   }
 
-  makeMarkers() {
-    for (let place of this.placesList) {
-      this.markers.push(L.marker([place.lat, place.lng]).addTo(mymap).bindPopup(place.name));
-    }
+  drawAreas(GeoJSON) {
+    let toolTipText;
+    let layer = L.geoJSON(GeoJSON, {
+      style: (feature) => {
+        switch (feature.properties.color) {
+          case "blue": return {color: "#00a8ff"};
+          case "green": return {color: "#4cd137"};
+          case "red": return {color: "#e84118"}; 
+        }
+      },
+      onEachFeature: (feature, layer) => {
+        layer.bindTooltip(feature.properties.name);
+        console.log(layer);
+      }
+    }).addTo(mymap);
+    console.log(toolTipText);
+    return layer;
   }
 
-  removeMarkers() {
-    for (var i = this.markers.length - 1; i >= 0; i--) {
-      this.markers[i].remove();
-      this.markers.pop(i);
-    }
-  }
-
-  rerenderMarkers() {
-    this.removeMarkers();
-    this.makeMarkers();
-  }
 }
 
-let places = new Places('json/sanAndreas.json');
+let areas = new Areas('json/SA_Police_Jursidictions.json');
+
+class Places {
+  constructor(jsonFile) {
+    this.GeoJSON = this.getJson(jsonFile);
+    console.log('GeoJSON:', this.areasGeoJSON);
+    this.layer = this.drawAreas(this.areasGeoJSON)
+    console.log('Layer:', this.layer);
+  }
+
+  getJson(address) {
+    let xhr = new XMLHttpRequest(),
+      places;
+    xhr.open('GET', address, false);
+    xhr.send();
+    if (xhr.status != 200) {
+      alert(xhr.status + ': ' + xhr.statusText);
+    } else {
+      return JSON.parse(xhr.responseText);
+    }
+  }
+
+  drawLocations(GeoJSON) {
+    let layer = L.geoJSON(GeoJSON).addTo(mymap);
+    return layer;
+  }
+
+}
+
+let overlays = {
+  'Police Jurisdictions': areas.layer
+}
+
+L.control.layers(layers, overlays).addTo(mymap);
