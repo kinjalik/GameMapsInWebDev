@@ -128,19 +128,8 @@ function editMap() {
     editPanelShown = true;
     var drawnItems = new L.FeatureGroup();
     mymap.addLayer(drawnItems);
-    var drawControl = new L.Control.Draw({
-      edit: {
-        featureGroup: drawnItems
-      }
-    });
 
     mymap.addControl(new L.Control.Draw({
-      edit: {
-        featureGroup: drawnItems,
-        poly: {
-          allowIntersection: false
-        }
-      },
       draw: {
         polygon: {
           allowIntersection: false,
@@ -150,12 +139,8 @@ function editMap() {
     }));
 
     mymap.on(L.Draw.Event.CREATED, function(event) {
-      var layer = event.layer;
-
-      layer.addTo(mymap);
-
-      let test = JSON.stringify(layer.toGeoJSON());
-      debug.log('info', 'GeoJSON:', test);
+      let layer = event.layer.addTo(mymap);
+      debug.log('info', 'GeoJSON:', JSON.stringify(layer.toGeoJSON()));
     });
   }
 }
