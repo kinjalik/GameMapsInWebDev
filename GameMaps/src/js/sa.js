@@ -1,3 +1,43 @@
+'use strict';
+
+class Debug {
+  constructor(isDebug, options) {
+    this.isDebug = Boolean(isDebug);
+    this.settings = options;
+    if (this.settings.showCoordinates == true) {
+      this.showCoordinates();
+    }
+  }
+
+  get status() {
+    return this.isDebug;
+  }
+
+  set status(newVal) {
+    this.isDebug = Boolean(newVal);
+  }
+
+  get options() {
+    return this.settings;
+  }
+
+  set options(obj) {
+    if (obj.showCoordinates !== undefined) { this.settings.showCoordinates = Boolean(obj.showCoordinates) }
+  }
+
+  showCoordinates() {
+    let notifyPopup = L.popup()
+    mymap.addEventListener('click', (e) => {
+      if (this.settings.showCoordinates === true && this.status == true) {
+        notifyPopup
+        .setLatLng(e.latlng)
+        .setContent('<p>Coordinates<br />Lat Lng: ' + SanAndreas.coordsTranslator('array', e.latlng).toString() + '</p>')
+        .openOn(mymap);
+      }
+    });
+  }
+}
+
 let SanAndreas = {
   maps: {
     SASat: L.tileLayer('maps/SASat/{z}/{x}/{y}.png', {
@@ -21,7 +61,7 @@ let SanAndreas = {
   coordsTranslator: (outputData, data) => {
     if (data instanceof Object && !(data instanceof Array)) {
       console.log('Got Object');
-      switch(outputData) {
+      switch (outputData) {
         case 'object':
           return {
             lat: data.lng.toFixed(4),
@@ -32,7 +72,7 @@ let SanAndreas = {
       }
     } else if (data instanceof Array) {
       console.log('Got Array');
-      switch(outputData) {
+      switch (outputData) {
         case 'object':
           return {
             lat: data[1].toFixed(4),
@@ -60,17 +100,6 @@ mymap.setView([0, 0], 2);
 let layers = {
   'Satellite': SanAndreas.maps.SASat,
   'Road': SanAndreas.maps.SARoad
-}
-
-function showCoordinates() {
-  let notifyPopup = L.popup()
-  mymap.on('click', function(e) {
-    console.log(e.latlng);
-    notifyPopup
-      .setLatLng(e.latlng)
-      .setContent('<p>Coordinates<br />Lat Lng: ' + SanAndreas.coordsTranslator('array', e.latlng).toString() + '</p>')
-      .openOn(mymap);
-  })
 }
 
 let editPanelShown = false;
@@ -141,9 +170,12 @@ class Areas {
     let layer = L.geoJSON(GeoJSON, {
       style: (feature) => {
         switch (feature.properties.color) {
-          case "blue": return {color: "#00a8ff"};
-          case "green": return {color: "#4cd137"};
-          case "red": return {color: "#e84118"}; 
+          case "blue":
+            return { color: "#00a8ff" };
+          case "green":
+            return { color: "#4cd137" };
+          case "red":
+            return { color: "#e84118" };
         }
       },
       onEachFeature: (feature, layer) => {
