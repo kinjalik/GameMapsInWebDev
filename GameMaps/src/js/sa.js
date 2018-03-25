@@ -3,7 +3,7 @@
 class Debug {
   constructor(isDebug, options) {
     this.isDebug = Boolean(isDebug);
-    this.settings = options;
+    this.settings = options || {};
     if (this.settings.showCoordinates == true) {
       this.showCoordinates();
     }
@@ -49,7 +49,7 @@ class Debug {
   }
 
   log(status, preMessage, messageBody) {
-    if (this.settings.logging == false) return false;
+    if (this.status == false || this.settings.logging == false) return false;
     switch(status) {
       case 'error':
         console.error(preMessage, messageBody);
@@ -67,10 +67,7 @@ class Debug {
   }
 }
 
-let debug = new Debug(true, {
-  showCoordinates: false,
-  logging: true
-});
+let debug = new Debug(false);
 
 let SanAndreas = {
   maps: {
@@ -132,7 +129,7 @@ let mymap = L.map('mapid', {
 mymap.setView([0, 0], 2);
 
 debug.options = {
-  showCoordinates: true
+  showCoordinates: false
 }
 
 let layers = {
