@@ -43,7 +43,7 @@ gulp.task('watch', function() {
   gulp.watch(`${global.paths.src.fonts}/**/*.*`, gulp.series('fonts'));
   gulp.watch(`${global.paths.src.js}/**/*.js`, gulp.series('js'));
   gulp.watch(`${global.paths.src.img}/**/*.*`, gulp.series('img'));
-  gulp.watch(Array.concat(global.paths.src.assetsFiles, [`!src/maps/**/*.png`]), gulp.series('assets'));
+  gulp.watch(global.paths.src.assetsFiles.concat([`!src/maps/**/*.png`]), gulp.series('assets'));
 });
 
-gulp.task('dev', gulp.series('clean', 'build', gulp.parallel('watch', 'server')));
+gulp.task('dev', gulp.series(gulp.parallel('watch', 'server')));
