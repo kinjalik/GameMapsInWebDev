@@ -6,7 +6,7 @@
     "name": "Los Santos Police Department Headquarters",
     "description": "Центральное управление Полицейского Департамента",
     "icon": "police"
-  }, 
+  },
   "geometry":
   {
     "type": "Point",
@@ -120,7 +120,7 @@
     "icon": "hospital"
   },
   "geometry":
-  { 
+  {
     "type": "Point",
     "coordinates": [2031.00586, -1418.701173]
   }
@@ -150,7 +150,7 @@
   "geometry":
   {
     "type": "Point",
-    "coordinates": [-1412.1094,-301.0254]
+    "coordinates": [-1412.1094, -301.0254]
   }
 },
 {
@@ -164,7 +164,7 @@
   "geometry":
   {
     "type": "Point",
-    "coordinates": [-1594.4824,711.9141]
+    "coordinates": [-1594.4824, 711.9141]
   }
 },
 {
@@ -178,7 +178,7 @@
   "geometry":
   {
     "type": "Point",
-    "coordinates": [-2770.7520,375.0000]
+    "coordinates": [-2770.7520, 375.0000]
   }
 },
 {
@@ -192,7 +192,7 @@
   "geometry":
   {
     "type": "Point",
-    "coordinates": [-2053.7109,-446.7773]
+    "coordinates": [-2053.7109, -446.7773]
   }
 },
 {
@@ -206,7 +206,7 @@
   "geometry":
   {
     "type": "Point",
-    "coordinates": [1691.8945,1442.8711]
+    "coordinates": [1691.8945, 1442.8711]
   }
 },
 {
@@ -220,7 +220,7 @@
   "geometry":
   {
     "type": "Point",
-    "coordinates": [1098.6328,1529.2969]
+    "coordinates": [1098.6328, 1529.2969]
   }
 },
 {
@@ -234,7 +234,7 @@
   "geometry":
   {
     "type": "Point",
-    "coordinates": [2330.5664,2471.9238]
+    "coordinates": [2330.5664, 2471.9238]
   }
 },
 {
@@ -248,7 +248,7 @@
   "geometry":
   {
     "type": "Point",
-    "coordinates": [937.5000,-1362.3047]
+    "coordinates": [937.5000, -1362.3047]
   }
 },
 {
@@ -262,6 +262,90 @@
   "geometry":
   {
     "type": "Point",
-    "coordinates": [ 1462.6465,-1010.7422 ]
+    "coordinates": [1462.6465, -1010.7422]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Binco",
+    "desc": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [2244.873048, -1678.710938]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "subURBAN",
+    "desc": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [2121.826173, -1207.763673]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "ZIP",
+    "desc": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1453.125001, -1135.253907]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "PROlaps",
+    "desc": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [492.919922, -1374.023438]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Didier Sachs",
+    "desc": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [474.609376, -1561.523438]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "VIctim",
+    "desc": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [468.750001, -1515.38086]
   }
 }]
