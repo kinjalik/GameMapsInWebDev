@@ -1,5 +1,10 @@
+const copy = require('copy-text-to-clipboard');
+const L = require('leaflet');
+const leafletDraw = require('leaflet-draw');
+const leafletEasyButton = require('leaflet-easybutton');
+
 class Debug {
-  constructor(isDebug, options) {
+  constructor(isDebug, options) { 
     this.isDebug = Boolean(isDebug);
     this.settings = options || {};
     if (this.settings.showCoordinates === true) {
@@ -82,7 +87,7 @@ let SanAndreas = {
       maxZoom: 5,
       continuousWorld: false,
       noWrap: true,
-    },)
+    }),
   },
   crs: L.extend({}, L.CRS.Simple, {
     transformation: new L.Transformation(0.04266666666, 127.99999998, -0.04266666666, 127.99999998),
@@ -139,8 +144,23 @@ class Draw {
 
       map.on(L.Draw.Event.CREATED, (event) => {
         const layer = event.layer.addTo(map);
-        console.info(JSON.stringify(layer.toGeoJSON()));
+        const geoJSON = layer.toGeoJSON();
+        geoJSON.properties = this.getProps('Нет описания');
+        copy(JSON.stringify(geoJSON));
+        alert('Данные GeoJSON объекта скопированы');
       });
+    }
+  }
+
+  getProps(noDescMsg) {
+    let name = prompt('Введите название точки');
+    let desc = prompt('Введите описание точки.\nЕсли нет описание/желания писать его - нажмите "отмена"');
+    if (desc === null || desc === '' || desc === undefined || desc === false) {
+      desc = noDescMsg;
+    }
+    return {
+      name: name,
+      desc: desc
     }
   }
 

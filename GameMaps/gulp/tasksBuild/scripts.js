@@ -4,6 +4,9 @@ const global = require('../config') ();
 
 module.exports = () => {
   return gulp.src(`${global.paths.src.js}/**/*.js`)
+    .pipe($.browserify({
+          insertGlobals : true
+        }))
     .pipe($.plumber({
       errorHandler: $.notify.onError(function(err) {
         return Object.assign(global.errorHandler, { 'message': err.message }, { 'title': 'JS Build Fail' })

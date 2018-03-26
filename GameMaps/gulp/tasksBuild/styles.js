@@ -12,7 +12,8 @@ module.exports = () => {
       })
     }))
     .pipe($.newer(global.paths.build.styles))
+    .pipe($.postcss(global.postcssProcessors.preStage))
     .pipe($.sass())
-    .pipe($.if(global.devBuild, $.postcss(global.postcssProcessorsProd)))
+    .pipe($.if(global.devBuild, $.postcss(global.postcssProcessors.postStage)))
     .pipe(gulp.dest(global.paths.build.styles))
 }

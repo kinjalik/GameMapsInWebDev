@@ -1,5 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const atImport = require("postcss-import");
 const $ = require('gulp-load-plugins')();
 
 const sourceDirs = {
@@ -35,16 +36,21 @@ module.exports = () => {
       src: sourceDirs,
       build: buildDirs
     },
-    postcssProcessorsProd: [
-      autoprefixer(),
-      cssnano({
-        preset: ['default', {
-          discardComments: {
-            removeAll: true,
-          },
-        }]
-      })
-    ],
+    postcssProcessors: {
+      preStage: [
+        atImport()
+      ],
+      postStage: [
+        autoprefixer(),
+        cssnano({
+          preset: ['default', {
+            discardComments: {
+              removeAll: true,
+            },
+          }]
+        })
+      ]
+    },
     babelSettings: {
       presets: ['env']
     },
