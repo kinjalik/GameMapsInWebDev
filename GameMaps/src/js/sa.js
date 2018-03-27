@@ -160,7 +160,7 @@ class Draw {
     }
     return {
       name: name,
-      desc: desc
+      description: desc
     }
   }
 

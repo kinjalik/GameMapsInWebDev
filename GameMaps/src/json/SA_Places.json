@@ -270,7 +270,7 @@
   "properties":
   {
     "name": "Binco",
-    "desc": "Нет описания",
+    "description": "Нет описания",
     "icon": "clothes"
   },
   "geometry":
@@ -284,7 +284,7 @@
   "properties":
   {
     "name": "subURBAN",
-    "desc": "Нет описания",
+    "description": "Нет описания",
     "icon": "clothes"
   },
   "geometry":
@@ -298,7 +298,7 @@
   "properties":
   {
     "name": "ZIP",
-    "desc": "Нет описания",
+    "description": "Нет описания",
     "icon": "clothes"
   },
   "geometry":
@@ -312,7 +312,7 @@
   "properties":
   {
     "name": "PROlaps",
-    "desc": "Нет описания",
+    "description": "Нет описания",
     "icon": "clothes"
   },
   "geometry":
@@ -326,7 +326,7 @@
   "properties":
   {
     "name": "Didier Sachs",
-    "desc": "Нет описания",
+    "description": "Нет описания",
     "icon": "clothes"
   },
   "geometry":
@@ -340,7 +340,7 @@
   "properties":
   {
     "name": "VIctim",
-    "desc": "Нет описания",
+    "description": "Нет описания",
     "icon": "clothes"
   },
   "geometry":
@@ -354,7 +354,7 @@
   "properties":
   {
     "name": "Didier Sachs",
-    "desc": "Нет описания",
+    "description": "Нет описания",
     "icon": "clothes"
   },
   "geometry":
@@ -368,7 +368,7 @@
   "properties":
   {
     "name": "Last Drop",
-    "desc": "Нет описания",
+    "description": "Нет описания",
     "icon": "clothes"
   },
   "geometry":
