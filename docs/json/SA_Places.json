@@ -348,4 +348,32 @@
     "type": "Point",
     "coordinates": [468.750001, -1515.38086]
   }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Didier Sachs",
+    "desc": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [667.236329, -517.089844]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Last Drop",
+    "desc": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [208.007813, -49.804688]
+  }
 }]
