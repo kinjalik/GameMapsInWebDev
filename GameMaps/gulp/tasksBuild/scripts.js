@@ -10,6 +10,10 @@ module.exports = () => {
   return gulp.src(`${global.paths.src.js}/**/*.js`)
 
     .pipe(rollup({plugins: [resolve(),
-    commonjs()]}, 'umd'))
+    commonjs(), babel()]}, 'umd'))
+    .pipe($.babel({
+      presets: ['env'],
+      comments: false
+	}))
     .pipe(gulp.dest(global.paths.build.js))
 }
