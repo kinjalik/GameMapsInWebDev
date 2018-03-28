@@ -1,7 +1,10 @@
-const copy = require('copy-text-to-clipboard');
-const L = require('leaflet');
-const leafletDraw = require('leaflet-draw');
-const leafletEasyButton = require('leaflet-easybutton');
+import fontawesome from '@fortawesome/fontawesome';
+import solid from '@fortawesome/fontawesome-free-solid';
+
+import copy from 'copy-text-to-clipboard';
+import L from 'leaflet'; 
+import leafletDraw from 'leaflet-draw';
+import leafletEasyButton from 'leaflet-easybutton';
 
 class Debug {
   constructor(isDebug, options) { 
