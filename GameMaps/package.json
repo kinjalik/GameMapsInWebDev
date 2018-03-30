@@ -6,13 +6,31 @@
   "author": "Albert Akmukhametov",
   "license": "CC-BY-NC-SA-4.0",
   "scripts": {
-    "start": "NODE_ENV=development gulp dev",
-    "build": "NODE_ENV=production gulp build"
+    "bundle": "webpack"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "base64-inline-loader": "^1.1.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
     "eslint": "4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "2.7.0"
+    "eslint-plugin-import": "2.7.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.1.0",
+    "imagemin-webpack-plugin": "^2.1.1",
+    "node-sass": "^4.8.3",
+    "resolve-url-loader": "github:bholloway/resolve-url-loader",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.5",
