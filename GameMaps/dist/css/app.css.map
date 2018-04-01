@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://bundle_[name]/./src/scss/sa.scss"],"names":[],"mappings":"AAAA,KACE,UACA,SAGF,OACE,YACA,aACA","file":"./css/app.css","sourcesContent":["body {\n  padding: 0;\n  margin: 0;\n}\n\n#mapid {\n  width: 100vw;\n  height: 100vh;\n  background: #6e9ecc;\n}\n/* Test of CSS comments */\n// Test of SASS comments"],"sourceRoot":""}

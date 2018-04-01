@@ -1,0 +1,379 @@
+[
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Los Santos Police Department Headquarters",
+    "description": "Центральное управление Полицейского Департамента",
+    "icon": "police"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1564.453126, -1679.44336]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Los Santos City Hall",
+    "description": "Мэрия города Los Santos",
+    "icon": "flag"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1482.421876, -1792.236329]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Alhambra Club",
+    "description": "Нет описания",
+    "icon": "bar"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1872.802735, -1688.232423]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "LS Police Habror Division",
+    "description": "Подразделение Полицейского управления города Los Santos по портовой зоне",
+    "icon": "police"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [2026.611329, -2135.009766]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Los Santos Heliport",
+    "description": "Нет описания",
+    "icon": "disk"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1763.671876, -2288.085938]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Los Santos International Airport",
+    "description": "Международный Аэропорт города Los Santos обеспечивает воздушную связь города",
+    "icon": "airport"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1473.632813, -2293.212891]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Los Santos Forum",
+    "description": "Стадион в восточной части города",
+    "icon": "cup"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [2736.328126, -1767.333985]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "All Saints General Hospital",
+    "description": "Центральный госпиталь города",
+    "icon": "hospital"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1161.621094, -1330.810548]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Jefferson Hospital",
+    "description": "Восточный госпиталь",
+    "icon": "hospital"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [2031.00586, -1418.701173]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Los Santos County Sheriff's Department",
+    "description": "Центральный офис управления Департамента Шерифа по округу города Los Santos",
+    "icon": "police"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [616.699219, -574.218751]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "San Fierro International Airport",
+    "description": "Нет описания",
+    "icon": "airport"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [-1412.1094, -301.0254]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "San Fierro Police Department",
+    "description": "Нет описания",
+    "icon": "police"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [-1594.4824, 711.9141]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "San Fierro City Hall",
+    "description": "Нет описания",
+    "icon": "flag"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [-2770.7520, 375.0000]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "San Fierro Forum",
+    "description": "Нет описания",
+    "icon": "cup"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [-2053.7109, -446.7773]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Las Venturas Airport",
+    "description": "Нет описания",
+    "icon": "airport"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1691.8945, 1442.8711]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Las Venturas Forum",
+    "description": "Нет описания",
+    "icon": "cup"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1098.6328, 1529.2969]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Las Venturas Police Department",
+    "description": "Нет описания",
+    "icon": "police"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [2330.5664, 2471.9238]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Cluckin Bell",
+    "description": "Нет описания",
+    "icon": "chicken"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [937.5000, -1362.3047]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Los Santos Central Bank",
+    "description": "Нет описания",
+    "icon": "bank"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1462.6465, -1010.7422]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Binco",
+    "description": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [2244.873048, -1678.710938]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "subURBAN",
+    "description": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [2121.826173, -1207.763673]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "ZIP",
+    "description": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [1453.125001, -1135.253907]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "PROlaps",
+    "description": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [492.919922, -1374.023438]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Didier Sachs",
+    "description": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [474.609376, -1561.523438]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "VIctim",
+    "description": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [468.750001, -1515.38086]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Didier Sachs",
+    "description": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [667.236329, -517.089844]
+  }
+},
+{
+  "type": "Feature",
+  "properties":
+  {
+    "name": "Last Drop",
+    "description": "Нет описания",
+    "icon": "clothes"
+  },
+  "geometry":
+  {
+    "type": "Point",
+    "coordinates": [208.007813, -49.804688]
+  }
+}]
