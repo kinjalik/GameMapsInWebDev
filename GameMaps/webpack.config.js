@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     vendor: './src/js/vendor.js',
     app: ['./src/js/sa.js', './src/scss/sa.scss'],
@@ -16,7 +16,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../docs'),
     filename: 'js/[name].js',
     sourceMapFilename: '[file].map',
     library: 'bundle_[name]',
