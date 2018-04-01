@@ -4,6 +4,7 @@ class Places {
   constructor(map, jsonFile, isAddedToMap) {
     this.map = map;
     this.layer = new GetGeoJSON(this.map, 'json/SA_Places.json', isAddedToMap, this.popupHandler);
+    console.log(this.layer);
   }
 
   popupHandler(feature, layer) {
