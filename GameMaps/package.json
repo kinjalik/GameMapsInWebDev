@@ -6,15 +6,18 @@
   "author": "Albert Akmukhametov",
   "license": "CC-BY-NC-SA-4.0",
   "scripts": {
-    "bundle": "webpack",
+    "bundle": "webpack --display-error-details",
     "server": "webpack-dev-server"
   },
   "devDependencies": {
+    "add": "^2.0.6",
     "autoprefixer": "^8.2.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "base64-inline-loader": "^1.1.1",
+    "browser-sync": "^2.23.6",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "clean-webpack-plugin": "^0.1.19",
     "copy-text-to-clipboard-browser": "^2.0.1",
     "copy-webpack-plugin": "^4.5.1",
@@ -39,7 +42,8 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-dev-server": "^3.1.1",
+    "yarn": "^1.5.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.5",

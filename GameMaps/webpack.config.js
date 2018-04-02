@@ -5,7 +5,12 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
+console.log('Webpack Started');
 module.exports = {
+  devServer: {
+    stats: 'errors-only',
+
+  },
   mode: 'production',
   entry: {
     vendor: './src/js/vendor.js',
@@ -23,17 +28,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'src/js'),
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: 'env',
-            sourceMap: true
-          },
-        },
-      },
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [{
@@ -86,9 +80,8 @@ module.exports = {
       },
     ],
   },
-  devtool: 'source-map',
   optimization: {
-    minimize: false,
+    minimize: true,
     runtimeChunk: {
       name: 'tools',
     },
@@ -106,7 +99,9 @@ module.exports = {
     },
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['../docs'], {
+      allowExternal: true,
+    }),
     new ExtractTextPlugin({
       filename: './css/[name].css',
       allChunks: true,
@@ -126,8 +121,9 @@ module.exports = {
       chunks: [],
     }),
     new CopyWebpackPlugin([{
-      from: './src/img/',
-      to: './img/',
+      from: path.resolve(__dirname, 'src/img/'),
+      to: path.resolve(__dirname, '../docs/img/'),
+      toType: 'dir'
     }]),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
