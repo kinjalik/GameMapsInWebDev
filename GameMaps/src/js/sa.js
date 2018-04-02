@@ -38,9 +38,7 @@ const overlays = {
   'Locations': places.layer,
 };
 
-bundle_vendor.L.control.layers(layers, overlays, {
-  collapsed: false,
-}).addTo(mymap);
+bundle_vendor.L.control.layers(layers, overlays).addTo(mymap);
 
 let app = {
   SanAndreas: SanAndreas,
