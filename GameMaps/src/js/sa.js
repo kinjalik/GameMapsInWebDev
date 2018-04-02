@@ -1,11 +1,13 @@
-let Debug = require('./_Debug.js');
-let Places = require('./_Places.js');
-let Draw = require('./_Draw.js');
-let Areas = require('./_Areas.js');
+/* global bundle_style, bundle_vendor */
 
-let SanAndreas = require('./_SanAndreasMapPreset.js');
+const Debug = require('./_Debug.js');
+const Places = require('./_Places.js');
+const Draw = require('./_Draw.js');
+const Areas = require('./_Areas.js');
 
-let mymap = bundle_vendor.L.map('mapid', {
+const SanAndreas = require('./_SanAndreasMapPreset.js');
+
+const mymap = bundle_vendor.L.map('mapid', {
   crs: SanAndreas.crs,
   maxBounds: [
     [3500, 3500],
@@ -16,7 +18,7 @@ let mymap = bundle_vendor.L.map('mapid', {
 mymap.setView([0, 0], 2);
 
 
-let debug = new Debug(true, {
+const debug = new Debug(true, {
   showCoordinates: true,
   logging: false,
 });
@@ -29,26 +31,31 @@ const areas = new Areas(mymap, 'json/SA_Police_Jursidictions.json', true);
 const places = new Places(mymap, 'json/SA_Places.json', true);
 
 const layers = {
+  // Leaflet need's quotes
+  /* eslint-disable */
   'Satellite': SanAndreas.maps.SASat,
   'Road': SanAndreas.maps.SARoad,
+  /* eslint-enable */
 };
 
 const overlays = {
+  /* eslint-disable */
   'Police Jurisdictions': areas.layer,
   'Locations': places.layer,
+  /* eslint-enable */
 };
 
 bundle_vendor.L.control.layers(layers, overlays).addTo(mymap);
 
-let app = {
-  SanAndreas: SanAndreas,
-  mymap: mymap,
-  debug: debug,
-  draw: draw,
-  areas: areas,
-  places: places,
-  layers: layers,
-  overlays: overlays
-}
+const app = {
+  SanAndreas,
+  mymap,
+  debug,
+  draw,
+  areas,
+  places,
+  layers,
+  overlays,
+};
 
 module.exports = app;

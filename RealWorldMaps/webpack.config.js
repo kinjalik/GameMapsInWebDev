@@ -14,8 +14,7 @@ module.exports = {
   mode: 'production',
   entry: {
     vendor: './src/js/vendor.js',
-    sa: ['./src/js/sa.js', './src/scss/sa.scss'],
-    five: ['./src/js/five.js', './src/scss/five.scss'],
+    ufa: ['./src/js/ufa.js', './src/scss/ufa.scss'],
     styles: [
       './src/js/fa.js',
       './src/scss/vendor.scss',
@@ -37,12 +36,6 @@ module.exports = {
             name: 'img/[name].[ext]',
             publicPath: '../',
           },
-        }],
-      },
-      {
-        test: /\.js$/,
-        use: [{
-          loader: 'babel-loader',
         }],
       },
       {
@@ -105,6 +98,7 @@ module.exports = {
       },
     },
   },
+  devtool: 'source-map',
   plugins: [
     new CleanWebpackPlugin(['../docs'], {
       allowExternal: true,
@@ -119,14 +113,9 @@ module.exports = {
       inject: false,
     }),
     new HtmlWebPackPlugin({
-      template: './src/sa.html',
-      filename: './sa.html',
-      chunks: ['tools','vendor', 'styles', 'sa'],
-    }),
-    new HtmlWebPackPlugin({
-      template: './src/five.html',
-      filename: './five.html',
-      chunks: ['tools','vendor', 'styles', 'five'],
+      template: './src/ufa.html',
+      filename: './ufa.html',
+      chunks: ['tools','vendor', 'styles', 'ufa'],
     }),
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, 'src/img/'),
