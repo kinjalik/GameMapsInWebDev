@@ -9,7 +9,7 @@ console.log('Webpack Started');
 module.exports = {
   devServer: {
     stats: 'errors-only',
-
+    contentBase: path.join(__dirname, "../docs/RealWorldMaps/"),
   },
   mode: 'production',
   entry: {
@@ -21,7 +21,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, '../docs'),
+    path: path.resolve(__dirname, '../docs/RealWorldMaps'),
     filename: 'js/[name].js',
     sourceMapFilename: '[file].map',
     library: 'bundle_[name]',
@@ -36,6 +36,12 @@ module.exports = {
             name: 'img/[name].[ext]',
             publicPath: '../',
           },
+        }],
+      },
+      {
+        test: /\.(js)$/,
+        use: [{
+          loader: 'babel-loader'
         }],
       },
       {
@@ -81,7 +87,7 @@ module.exports = {
     ],
   },
   optimization: {
-    minimize: false,
+    minimize: true,
     runtimeChunk: {
       name: 'tools',
     },
@@ -98,19 +104,13 @@ module.exports = {
       },
     },
   },
-  devtool: 'source-map',
   plugins: [
-    new CleanWebpackPlugin(['../docs'], {
+    new CleanWebpackPlugin(['../docs/RealWorldMaps'], {
       allowExternal: true,
     }),
     new ExtractTextPlugin({
       filename: './css/[name].css',
       allChunks: true,
-    }),
-    new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-      inject: false,
     }),
     new HtmlWebPackPlugin({
       template: './src/ufa.html',
@@ -128,17 +128,5 @@ module.exports = {
         optimizationLevel: 9,
       },
     }),
-    new CopyWebpackPlugin([
-      {
-        from: './src/maps/',
-        to: './maps/',
-        force: true,
-      },
-      {
-        from: './src/json/',
-        to: './json/',
-        force: true,
-      },
-    ]),
   ],
 };

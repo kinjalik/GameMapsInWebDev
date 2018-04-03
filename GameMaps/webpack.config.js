@@ -22,7 +22,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, '../docs'),
+    path: path.resolve(__dirname, '../docs/GameMaps'),
     filename: 'js/[name].js',
     sourceMapFilename: '[file].map',
     library: 'bundle_[name]',
@@ -88,7 +88,7 @@ module.exports = {
     ],
   },
   optimization: {
-    minimize: false,
+    minimize: true,
     runtimeChunk: {
       name: 'tools',
     },
@@ -106,7 +106,7 @@ module.exports = {
     },
   },
   plugins: [
-    new CleanWebpackPlugin(['../docs'], {
+    new CleanWebpackPlugin(['../docs/GameMaps/'], {
       allowExternal: true,
     }),
     new ExtractTextPlugin({
@@ -130,7 +130,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, 'src/img/'),
-      to: path.resolve(__dirname, '../docs/img/'),
+      to: path.resolve(__dirname, '../docs/GameMaps/img/'),
       toType: 'dir'
     }]),
     new ImageminPlugin({
